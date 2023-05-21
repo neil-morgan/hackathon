@@ -7,15 +7,18 @@ rootElement.id = "react-chrome-app";
 
 const globalStyles = document.createElement("style");
 globalStyles.innerHTML = `
+  * { 
+    box-sizing: border-box;
+  }
+
   #${rootElement.id} {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 300px;
-  height: 100vh;
-  background: #ffffff;
-  border-right: 1px solid #c2c2c2;
-  z-index: 999999999;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    font-family: Consolas,monaco,monospace; 
+    z-index: 999999999;
   }
 `;
 document.body.appendChild(rootElement);
