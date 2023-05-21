@@ -29,6 +29,8 @@ const Aside = styled.aside`
 const Main = styled.main`
   background: #dcdfdb50;
   grid-column: span 2 / span 2;
+  border-radius: 10px;
+  padding: 20px;
 `;
 
 const Body = styled.div`
@@ -58,7 +60,7 @@ export const Plugin = () => {
       <Grid>
         <Aside>Logo here</Aside>
         <Main>
-          <StepNumbers steps={steps} onChange={handleStepChange} />
+          <StepNumbers step={step} steps={steps} onChange={handleStepChange} />
           <Body>
             {loading ? (
               <>loading spinner</>

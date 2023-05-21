@@ -1,10 +1,13 @@
 import styled from "styled-components";
 
+type NumberDiscProps = {
+  $isActive: boolean;
+};
+
 const Container = styled.div`
   position: relative;
   display: flex;
   justify-content: space-between;
-  padding: 20px;
   margin-bottom: 20px;
 
   &:after {
@@ -19,11 +22,11 @@ const Container = styled.div`
   }
 `;
 
-const NumberDisc = styled.div`
+const NumberDisc = styled.div<NumberDiscProps>`
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: #fff;
+  background: ${({ $isActive }) => ($isActive ? "#ffffff" : "#dfdfdf")};
   color: #000;
   display: flex;
   justify-content: center;
@@ -35,26 +38,31 @@ const NumberDisc = styled.div`
 `;
 
 type StepNumbersProps = {
+  step: number;
   steps: string[];
   onChange: (step: number) => void;
 };
 
 type StepNumberProps = {
   index: number;
+  step: number;
   onClick: () => void;
 };
 
 export const StepNumbers = ({
+  step,
   steps,
   onChange,
 }: StepNumbersProps): JSX.Element => (
   <Container>
     {steps.map((_, i) => (
-      <StepNumber key={i} index={i + 1} onClick={() => onChange(i)} />
+      <StepNumber key={i} index={i} step={step} onClick={() => onChange(i)} />
     ))}
   </Container>
 );
 
-const StepNumber = ({ index, onClick }: StepNumberProps): JSX.Element => (
-  <NumberDisc onClick={onClick}>{index}</NumberDisc>
+const StepNumber = ({ index, step, onClick }: StepNumberProps): JSX.Element => (
+  <NumberDisc onClick={onClick} $isActive={step === index}>
+    {index + 1}
+  </NumberDisc>
 );
